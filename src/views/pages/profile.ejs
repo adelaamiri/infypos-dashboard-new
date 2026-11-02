@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content profile-main">
+      <%- include('../partials/topbar') %>
+
+      <section class="profile-content">
+        <form class="profile-card">
+          <div class="profile-image-block">
+            <label>Change Image:</label>
+            <div class="profile-avatar-edit">
+              <div class="profile-avatar">AP</div>
+              <button type="button" aria-label="Change image"><i data-lucide="pencil"></i></button>
+            </div>
+          </div>
+
+          <div class="profile-form-grid">
+            <label>
+              <span>First Name:<b>*</b></span>
+              <input type="text" value="Admin">
+            </label>
+            <label>
+              <span>Last Name:<b>*</b></span>
+              <input type="text" value="POS">
+            </label>
+            <label>
+              <span>Email:<b>*</b></span>
+              <input type="email" value="admin@infy-pos.com">
+            </label>
+            <label>
+              <span>Phone Number:<b>*</b></span>
+              <input type="tel" value="8807681322">
+            </label>
+          </div>
+
+          <div class="profile-actions">
+            <button class="button-primary" type="submit">Save</button>
+            <button class="button-muted" type="button">Cancel</button>
+          </div>
+        </form>
+
+        <footer class="profile-footer">
+          <span>All rights reserved by InfyOm Technologies &copy;2026 <a href="#">General Store</a></span>
+          <span>v4.5.1</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

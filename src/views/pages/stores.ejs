@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar"><span></span><button class="create-button" type="button">Create Store</button></div>
+        <div class="product-table-card">
+          <table class="product-table operations-table stores-table">
+            <thead><tr><th>Name</th><th>Status</th><th>Users</th><th>Action</th></tr></thead>
+            <tbody>
+              <% stores.forEach(store => { %>
+                <tr>
+                  <td><%= store.name %></td>
+                  <td><button class="status-switch <%= store.enabled ? 'is-on' : '' %>" type="button" data-toggle-switch aria-pressed="<%= store.enabled ? 'true' : 'false' %>" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button></td>
+                  <td><span class="status-pill status-method"><%= store.users %></span></td>
+                  <td><%- include('../partials/table-actions', { copy: false, view: false }) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content field-content">
+        <header class="field-header">
+          <h1>Field Configuration</h1>
+          <p>Customize required and optional fields for Supplier and Customer forms.</p>
+        </header>
+        <div class="field-card">
+          <section class="field-panel">
+            <div class="field-panel-head">
+              <span><i data-lucide="user"></i></span>
+              <div>
+                <h2>Customer</h2>
+                <p>Customize required and optional fields for customer forms.</p>
+              </div>
+            </div>
+            <table class="field-table">
+              <thead><tr><th>Field Type</th><th>Required</th></tr></thead>
+              <tbody>
+                <% fieldConfiguration.customer.forEach(field => { %>
+                  <tr>
+                    <td><%= field.name %></td>
+                    <td><button class="status-switch <%= field.required ? 'is-on' : '' %>" type="button" data-toggle-switch aria-pressed="<%= field.required ? 'true' : 'false' %>" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </section>
+          <section class="field-panel">
+            <div class="field-panel-head">
+              <span><i data-lucide="truck"></i></span>
+              <div>
+                <h2>Supplier</h2>
+                <p>Customize required and optional fields for supplier forms.</p>
+              </div>
+            </div>
+            <table class="field-table">
+              <thead><tr><th>Field Type</th><th>Required</th></tr></thead>
+              <tbody>
+                <% fieldConfiguration.supplier.forEach(field => { %>
+                  <tr>
+                    <td><%= field.name %></td>
+                    <td><button class="status-switch <%= field.required ? 'is-on' : '' %>" type="button" data-toggle-switch aria-pressed="<%= field.required ? 'true' : 'false' %>" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </section>
+          <button class="field-save button-primary" type="button">Save</button>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

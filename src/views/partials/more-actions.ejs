@@ -1,0 +1,21 @@
+<span class="dropdown-wrap row-action-wrap">
+  <button class="more-action dropdown-trigger" type="button" aria-label="More actions" data-dropdown-trigger="<%= menuKey %>" aria-expanded="false">
+    <i data-lucide="more-vertical"></i>
+  </button>
+  <span class="dropdown-panel row-action-menu" data-dropdown-menu="<%= menuKey %>">
+    <% (items || []).forEach(item => { %>
+      <% const inferredModal = item.modal || ((!item.href && item.label && item.label.indexOf('View') === 0) ? 'transaction-modal' : ((!item.href && item.label && item.label.indexOf('Edit') === 0) ? 'edit-record-modal' : '')); %>
+      <% if (inferredModal) { %>
+        <button class="row-action-item" type="button" data-modal-open="<%= inferredModal %>">
+          <i data-lucide="<%= item.icon %>"></i>
+          <span><%= item.label %></span>
+        </button>
+      <% } else { %>
+        <a class="row-action-item" href="<%= item.href || '#' %>">
+          <i data-lucide="<%= item.icon %>"></i>
+          <span><%= item.label %></span>
+        </a>
+      <% } %>
+    <% }) %>
+  </span>
+</span>

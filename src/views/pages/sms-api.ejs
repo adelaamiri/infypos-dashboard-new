@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content sms-api-content">
+        <h1>SMS API Configuration</h1>
+        <form class="settings-card sms-api-card">
+          <label class="toggle-line">
+            <button class="status-switch is-on" type="button" data-toggle-switch aria-pressed="true" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button>
+            <span>Twilio</span>
+          </label>
+          <div class="settings-grid">
+            <label>
+              <span>TWILIO SID:<b>*</b></span>
+              <input type="text" name="twilioSid" placeholder="Enter your Twilio Account SID" autocomplete="off">
+            </label>
+            <label>
+              <span>TWILIO TOKEN:<b>*</b></span>
+              <input type="password" name="twilioToken" placeholder="Enter your Twilio Auth Token" autocomplete="new-password">
+            </label>
+            <label>
+              <span>TWILIO FROM:<b>*</b></span>
+              <input type="tel" name="twilioFrom" placeholder="Enter your Twilio phone number">
+            </label>
+          </div>
+          <button class="button-primary settings-save" type="submit">Save</button>
+        </form>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

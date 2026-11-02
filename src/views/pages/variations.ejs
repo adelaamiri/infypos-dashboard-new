@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search wide"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <button class="create-button" type="button">Create Variation</button>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table variations-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>Variation Name</th>
+                <th>Variation Types</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% variations.forEach(variation => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><%= variation.name %></td>
+                  <td><%= variation.types %></td>
+                  <td><%- include('../partials/table-actions', { copy: false, view: false }) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row variations-pagination">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-3 of 3</span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

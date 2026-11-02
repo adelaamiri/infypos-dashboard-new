@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <div class="login-logo" aria-hidden="true">
+      <span></span>
+      <span></span>
+    </div>
+    <section class="login-card">
+      <h1>Sign In</h1>
+      <form class="login-form">
+        <label>
+          <span>Email :<b>*</b></span>
+          <input type="email" value="admin@infy-pos.com">
+        </label>
+        <label>
+          <span>Password:<b>*</b><a href="#">Forgot Password ?</a></span>
+          <div class="login-password">
+            <input type="password" value="123456">
+            <button type="button" aria-label="Show password"><i data-lucide="eye-off"></i></button>
+          </div>
+        </label>
+        <button class="login-submit" type="submit">Login</button>
+        <div class="login-roles">
+          <button class="role-admin" type="button">Admin</button>
+          <button class="role-sales" type="button">Sales</button>
+          <button class="role-purchases" type="button">Purchases</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

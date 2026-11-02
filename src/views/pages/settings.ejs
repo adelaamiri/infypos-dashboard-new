@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content settings-content">
+        <h1>System Settings</h1>
+        <form class="settings-card system-settings-card">
+          <div class="settings-grid">
+            <div class="settings-logo-field">
+              <span class="settings-label">Change Logo:</span>
+              <div class="settings-logo">
+                <span></span>
+                <span></span>
+                <button type="button" aria-label="Change logo"><i data-lucide="pencil"></i></button>
+              </div>
+            </div>
+            <label>
+              <span>Default Email:</span>
+              <input type="email" value="support@infypos.com">
+            </label>
+            <label>
+              <span>Company Phone:</span>
+              <input type="text" value="1234567890">
+            </label>
+            <label>
+              <span>Developed By:</span>
+              <input type="text" value="infyom">
+            </label>
+            <label>
+              <span>Footer:</span>
+              <input type="text" value="All rights reserved by InfyOm Technologies">
+            </label>
+            <label>
+              <span>Default Customer:<b>*</b></span>
+              <span class="settings-select">walk-in-customer <i data-lucide="chevron-down"></i></span>
+            </label>
+            <label>
+              <span>Default Warehouse:<b>*</b></span>
+              <span class="settings-select">warehouse <i data-lucide="chevron-down"></i></span>
+            </label>
+            <label>
+              <span>Country:<b>*</b></span>
+              <span class="settings-select">India <i data-lucide="chevron-down"></i></span>
+            </label>
+            <label>
+              <span>State:<b>*</b></span>
+              <span class="settings-select">Gujarat <i data-lucide="chevron-down"></i></span>
+            </label>
+            <label>
+              <span>City:</span>
+              <input type="text" value="Surat">
+            </label>
+            <label>
+              <span>Postal Code:</span>
+              <input type="text" value="395007">
+            </label>
+            <label>
+              <span>Date Format:<b>*</b></span>
+              <span class="settings-select">YYYY-MM-DD <i data-lucide="chevron-down"></i></span>
+            </label>
+            <label class="settings-wide">
+              <span>Address:</span>
+              <textarea>C-303, Atlanta Shopping Mall, Nr. Sudama Chowk, Mota Varachha, Surat, Gujarat, India.</textarea>
+            </label>
+          </div>
+          <div class="settings-options">
+            <label><button class="status-switch is-on" type="button" data-toggle-switch aria-pressed="true" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button>Enable nepali datepicker</label>
+            <label><input type="checkbox" checked>Show version number in footer</label>
+            <label><input type="checkbox" checked>Add stock while product creation</label>
+            <label><input type="checkbox">Show app name in sidebar</label>
+          </div>
+          <div class="settings-buttons">
+            <button class="backup-button" type="button"><i data-lucide="database"></i>Backup Database</button>
+            <i data-lucide="info" class="info-dot"></i>
+          </div>
+          <button class="button-primary settings-save" type="submit">Save</button>
+        </form>
+        <h2 class="clear-cache-title">Clear Cache</h2>
+        <section class="settings-card clear-cache-card">
+          <button class="button-primary clear-cache-button" type="button">Clear Cache</button>
+        </section>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

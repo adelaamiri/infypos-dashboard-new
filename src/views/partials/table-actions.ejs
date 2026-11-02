@@ -1,0 +1,10 @@
+<span class="table-actions">
+  <% if (typeof copy !== 'undefined' && copy) { %><button class="copy-action" type="button" aria-label="Copy"><i data-lucide="copy"></i></button><% } %>
+  <% if (typeof view === 'undefined' || view !== false) { %><button class="view-action" type="button" aria-label="View" data-modal-open="<%= typeof viewModal !== 'undefined' ? viewModal : 'transaction-modal' %>"><i data-lucide="eye"></i></button><% } %>
+  <% if (typeof editHref !== 'undefined' && editHref) { %>
+    <a class="edit-action action-link" href="<%= editHref %>" aria-label="Edit"><i data-lucide="square-pen"></i></a>
+  <% } else { %>
+    <button class="edit-action" type="button" aria-label="Edit" data-modal-open="<%= typeof editModal !== 'undefined' ? editModal : 'edit-record-modal' %>"><i data-lucide="square-pen"></i></button>
+  <% } %>
+  <button class="delete-action" type="button" aria-label="Delete" data-modal-open="delete-modal"><i data-lucide="trash-2"></i></button>
+</span>

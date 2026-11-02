@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search wide"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <button class="create-button" type="button">Create Warehouse</button>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table warehouse-table">
+            <thead><tr><th><input type="checkbox"></th><th>Warehouse</th><th>Phone Number</th><th>Country</th><th>City</th><th>Zip Code</th><th>Created On</th><th>Action</th></tr></thead>
+            <tbody>
+              <% warehouses.forEach(warehouse => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><a class="person-name" href="#"><%= warehouse.name %></a><span class="person-email"><%= warehouse.email %></span></td>
+                  <td><%= warehouse.phone %></td>
+                  <td><%= warehouse.country %></td>
+                  <td><%= warehouse.city %></td>
+                  <td><%= warehouse.zip %></td>
+                  <td><span class="date-pill"><%= warehouse.time %><br><%= warehouse.date %></span></td>
+                  <td><%- include('../partials/table-actions', { copy: false }) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row"><div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-2 of 2</span></div><div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div></div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

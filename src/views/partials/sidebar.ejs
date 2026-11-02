@@ -1,0 +1,189 @@
+<aside class="sidebar" id="sidebar">
+  <div class="dropdown-wrap store-dropdown-wrap">
+    <button class="store-switcher dropdown-trigger" type="button" data-dropdown-trigger="store-menu" aria-expanded="false">
+      <div class="store-icon"><i data-lucide="store"></i></div>
+      <div>
+        <span>Store</span>
+        <strong data-store-label><%= dashboard.storeName %></strong>
+      </div>
+      <i data-lucide="chevron-down" class="chevron"></i>
+    </button>
+    <div class="dropdown-panel store-menu" data-dropdown-menu="store-menu">
+      <% ['Default Store', 'General Store', 'Fruite Warehouse'].forEach(store => { %>
+        <button class="store-option" type="button" data-store-option="<%= store %>">
+          <span class="radio-dot <%= store === dashboard.storeName ? 'checked' : '' %>"></span>
+          <span class="<%= store === dashboard.storeName ? 'selected' : '' %>"><%= store %></span>
+        </button>
+      <% }) %>
+    </div>
+  </div>
+
+  <label class="search-box">
+    <i data-lucide="search"></i>
+    <input type="search" placeholder="Search">
+  </label>
+
+  <nav class="nav-menu" aria-label="Main navigation">
+    <% const currentSection = typeof activeSection !== 'undefined' ? activeSection : 'Dashboard'; %>
+    <% const currentProductSub = typeof activeProductSub !== 'undefined' ? activeProductSub : ''; %>
+    <% const currentPurchaseSub = typeof activePurchaseSub !== 'undefined' ? activePurchaseSub : ''; %>
+    <% const currentSalesSub = typeof activeSalesSub !== 'undefined' ? activeSalesSub : ''; %>
+    <% const currentExpenseSub = typeof activeExpenseSub !== 'undefined' ? activeExpenseSub : ''; %>
+    <% const currentPeopleSub = typeof activePeopleSub !== 'undefined' ? activePeopleSub : ''; %>
+    <% const currentTemplateSub = typeof activeTemplateSub !== 'undefined' ? activeTemplateSub : ''; %>
+    <a href="/dashboard" class="nav-link <%= currentSection === 'Dashboard' ? 'active' : '' %>">
+      <i data-lucide="pie-chart"></i>
+      <span>Dashboard</span>
+    </a>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Products' ? 'open' : '' %>" type="button" data-sidebar-submenu="products">
+      <i data-lucide="boxes"></i>
+      <span>Products</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Products' ? 'open' : '' %>" data-sidebar-submenu-panel="products">
+      <% [
+        ['Products', 'boxes', '/products'],
+        ['Product Categories', 'package-open', '/product-categories'],
+        ['Variations', 'layers', '/variations'],
+        ['Brands', 'bookmark', '/brands'],
+        ['Units', 'quote', '/units'],
+        ['Base Units', 'ruler', '/base-units'],
+        ['Print Barcode', 'printer', '/print-barcode']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentProductSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <% [
+      ['Adjustments', 'package-check', '/adjustments'],
+      ['Quotations', 'shopping-basket', '/quotations']
+    ].forEach(item => { %>
+      <a href="<%= item[2] %>" class="nav-link <%= currentSection === item[0] ? 'active' : '' %>">
+        <i data-lucide="<%= item[1] %>"></i>
+        <span><%= item[0] %></span>
+      </a>
+    <% }) %>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Purchases' ? 'open' : '' %>" type="button" data-sidebar-submenu="purchases">
+      <i data-lucide="receipt-text"></i>
+      <span>Purchases</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Purchases' ? 'open' : '' %>" data-sidebar-submenu-panel="purchases">
+      <% [
+        ['Purchases', 'receipt-text', '/purchases'],
+        ['Purchases Returns', 'arrow-left', '/purchase-returns']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentPurchaseSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Sales' ? 'open' : '' %>" type="button" data-sidebar-submenu="sales">
+      <i data-lucide="shopping-cart"></i>
+      <span>Sales</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Sales' ? 'open' : '' %>" data-sidebar-submenu-panel="sales">
+      <% [
+        ['Sales', 'shopping-cart', '/sales'],
+        ['Sales Returns', 'arrow-right', '/sales-returns']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentSalesSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <a href="/transfers" class="nav-link <%= currentSection === 'Transfers' ? 'active' : '' %>">
+      <i data-lucide="package-open"></i>
+      <span>Transfers</span>
+    </a>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Expenses' ? 'open' : '' %>" type="button" data-sidebar-submenu="expenses">
+      <i data-lucide="badge-dollar-sign"></i>
+      <span>Expenses</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Expenses' ? 'open' : '' %>" data-sidebar-submenu-panel="expenses">
+      <% [
+        ['Expenses', 'badge-dollar-sign', '/expenses'],
+        ['Expense Categories', 'badge-dollar-sign', '/expense-categories']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentExpenseSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Peoples' ? 'open' : '' %>" type="button" data-sidebar-submenu="peoples">
+      <i data-lucide="user"></i>
+      <span>Peoples</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Peoples' ? 'open' : '' %>" data-sidebar-submenu-panel="peoples">
+      <% [
+        ['Suppliers', 'truck', '/suppliers'],
+        ['Customers', 'users', '/customers'],
+        ['Users', 'user', '/users']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentPeopleSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <% [
+      ['Wallet Requests', 'wallet-cards', '/wallet-requests'],
+      ['Roles/Permissions', 'shield', '/roles'],
+      ['Warehouse', 'home', '/warehouse'],
+      ['Reports', 'bar-chart-3', '/reports'],
+      ['Stores', 'store', '/stores'],
+      ['Currencies', 'dollar-sign', '/currencies'],
+      ['Languages', 'languages', '/languages']
+    ].forEach(item => { %>
+      <a href="<%= item[2] %>" class="nav-link <%= currentSection === item[0] ? 'active' : '' %>">
+        <i data-lucide="<%= item[1] %>"></i>
+        <span><%= item[0] %></span>
+      </a>
+    <% }) %>
+
+    <button class="nav-link nav-toggle <%= currentSection === 'Templates' ? 'open' : '' %>" type="button" data-sidebar-submenu="templates">
+      <i data-lucide="file"></i>
+      <span>Templates</span>
+      <i data-lucide="chevron-down" class="nav-arrow"></i>
+    </button>
+    <div class="nav-submenu <%= currentSection === 'Templates' ? 'open' : '' %>" data-sidebar-submenu-panel="templates">
+      <% [
+        ['Email Templates', 'mail', '/email-templates'],
+        ['SMS Templates', 'message-square-text', '/sms-templates'],
+        ['SMS API', 'box', '/sms-api']
+      ].forEach(item => { %>
+        <a href="<%= item[2] %>" class="nav-sublink <%= currentTemplateSub === item[0] ? 'active' : '' %>">
+          <i data-lucide="<%= item[1] %>"></i>
+          <span><%= item[0] %></span>
+        </a>
+      <% }) %>
+    </div>
+
+    <% [
+      ['Payment Methods', 'credit-card', '/payment-methods'],
+      ['Field Configuration', 'list-filter', '/field-configuration'],
+      ['Settings', 'settings', '/settings']
+    ].forEach(item => { %>
+      <a href="<%= item[2] %>" class="nav-link <%= currentSection === item[0] ? 'active' : '' %>">
+        <i data-lucide="<%= item[1] %>"></i>
+        <span><%= item[0] %></span>
+      </a>
+    <% }) %>
+  </nav>
+</aside>

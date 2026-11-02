@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <div class="product-actions quotation-actions">
+            <button class="filter-button" type="button" aria-label="Filter"><i data-lucide="filter"></i></button>
+            <button class="date-filter" type="button">Select Date <i data-lucide="calendar-days"></i></button>
+            <button class="create-button" type="button">Create Sale</button>
+          </div>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table sales-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>Reference</th>
+                <th>User</th>
+                <th>Customer</th>
+                <th>Warehouse</th>
+                <th>Status</th>
+                <th>Grand Total</th>
+                <th>Paid</th>
+                <th>Due</th>
+                <th>Payment Status</th>
+                <th>Payment Type</th>
+                <th>Created On</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sales.forEach(sale => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><span class="code-pill"><%= sale.reference %></span></td>
+                  <td><%= sale.user %></td>
+                  <td><%= sale.customer %></td>
+                  <td><%= sale.warehouse %></td>
+                  <td><span class="status-pill status-completed"><%= sale.status %></span></td>
+                  <td><%= sale.grandTotal %></td>
+                  <td><%= sale.paid %></td>
+                  <td><%= sale.due %></td>
+                  <td><span class="status-pill <%= sale.paymentStatus === 'Paid' ? 'status-completed' : sale.paymentStatus === 'Partial' ? 'status-sent' : 'status-pending' %>"><%= sale.paymentStatus %></span></td>
+                  <td><span class="status-pill <%= sale.paymentType === '-' ? 'status-plain' : 'status-method' %>"><%= sale.paymentType %></span></td>
+                  <td><span class="date-pill"><%= sale.time %><br><%= sale.date %></span></td>
+                  <td><%- include('../partials/more-actions', {
+                    menuKey: `sale-${sale.reference}`,
+                    items: [
+                      { label: 'View Sale', icon: 'eye' },
+                      { label: 'Download PDF', icon: 'file-down' },
+                      { label: 'Edit Sale', icon: 'square-pen' },
+                      { label: 'Delete Sale', icon: 'trash-2', modal: 'delete-modal' }
+                    ]
+                  }) %></td>
+                </tr>
+              <% }) %>
+              <tr class="table-total-row">
+                <td></td>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>$ 6,929,9</td>
+                <td>$ 5,779,3</td>
+                <td>$ 1,291,0</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-10 of 3572</span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

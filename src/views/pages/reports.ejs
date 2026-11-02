@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content reports-content">
+        <div class="page-tabs report-tabs">
+          <a class="active" href="/reports">Warehouse Reports</a>
+          <a href="#">Sale Reports</a>
+          <a href="#">Stock Reports</a>
+          <a href="#">Purchase Reports</a>
+          <a href="#">Top Selling Products Reports</a>
+          <a href="#">More <i data-lucide="chevron-down"></i></a>
+        </div>
+        <label class="report-select">
+          <span>Warehouse:</span>
+          <span class="select-field"><select><option>Choose Warehouse</option></select><i data-lucide="chevron-down"></i></span>
+        </label>
+        <section class="report-cards">
+          <article class="report-card report-blue"><span><i data-lucide="shopping-cart"></i></span><strong>0,0</strong><small>Sales</small></article>
+          <article class="report-card report-green"><span><i data-lucide="shopping-cart-plus"></i></span><strong>0,0</strong><small>Purchases</small></article>
+          <article class="report-card report-sky"><span><i data-lucide="arrow-right"></i></span><strong>0,0</strong><small>Sales Return</small></article>
+          <article class="report-card report-gold"><span><i data-lucide="arrow-left"></i></span><strong>0,0</strong><small>Purchases Return</small></article>
+        </section>
+        <div class="page-tabs report-subtabs">
+          <a class="active" href="#">Sales</a><a href="#">Sales Returns</a><a href="#">Purchases Returns</a><a href="#">Expenses</a>
+        </div>
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <button class="filter-button" type="button"><i data-lucide="filter"></i></button>
+        </div>
+        <div class="empty-report">There are no records to display</div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

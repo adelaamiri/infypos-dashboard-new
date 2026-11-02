@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <div class="product-actions people-actions">
+            <button class="create-button" type="button">Import Suppliers</button>
+            <button class="create-button" type="button">Create Supplier</button>
+          </div>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table people-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>Supplier</th>
+                <th>Phone Number</th>
+                <th>Created On</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% suppliers.forEach(supplier => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>
+                    <a class="person-name" href="#"><%= supplier.name %></a>
+                    <span class="person-email"><%= supplier.email %></span>
+                  </td>
+                  <td><%= supplier.phone %></td>
+                  <td><span class="date-pill"><%= supplier.time %><br><%= supplier.date %></span></td>
+                  <td>
+                    <span class="table-actions">
+                      <a class="edit-action action-link" href="/suppliers/edit" aria-label="Edit"><i data-lucide="square-pen"></i></a>
+                      <button class="delete-action" type="button" aria-label="Delete" data-modal-open="delete-modal"><i data-lucide="trash-2"></i></button>
+                    </span>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-8 of 8</span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

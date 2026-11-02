@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content barcode-content">
+        <div class="barcode-card">
+          <div class="barcode-toggle-row">
+            <label class="switch">
+              <input type="checkbox">
+              <span></span>
+            </label>
+            <span>Print Custom Barcode</span>
+          </div>
+
+          <div class="barcode-field barcode-field-small">
+            <label>Warehouse:<b>*</b></label>
+            <div class="select-box">Choose Warehouse <i data-lucide="chevron-down"></i></div>
+          </div>
+
+          <div class="barcode-field">
+            <label>Product:</label>
+            <div class="barcode-search"><i data-lucide="search"></i><input type="search" placeholder="Search Product by Code Name"></div>
+          </div>
+
+          <table class="barcode-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">No Data Available</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="barcode-options">
+            <div class="barcode-field barcode-paper">
+              <label>Paper Size:<b>*</b></label>
+              <div class="select-box">Choose Paper size <i data-lucide="chevron-down"></i></div>
+            </div>
+            <div class="barcode-toggles">
+              <label><span>Show Store Name</span><span class="mini-switch on"></span></label>
+              <label><span>Show Product Name</span><span class="mini-switch on"></span></label>
+              <label><span>Show Price</span><span class="mini-switch on"></span></label>
+              <label><span>Show Border</span><span class="mini-switch"></span></label>
+              <label><span>Price Font Size</span><input type="text" value="12"></label>
+            </div>
+          </div>
+
+          <div class="barcode-buttons">
+            <button class="barcode-preview" type="button">Preview <i data-lucide="banknote"></i></button>
+            <button class="barcode-reset" type="button">Reset <i data-lucide="credit-card"></i></button>
+            <button class="barcode-print" type="button">Print <i data-lucide="archive"></i></button>
+          </div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

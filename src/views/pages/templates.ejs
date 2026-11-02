@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content template-content">
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table template-table">
+            <thead><tr><th>Name</th><th>Status</th><th>Content</th><th>Action</th></tr></thead>
+            <tbody>
+              <% templates.forEach(template => { %>
+                <tr>
+                  <td><%= template.name %></td>
+                  <td><button class="status-switch <%= template.enabled ? 'is-on' : '' %>" type="button" data-toggle-switch aria-pressed="<%= template.enabled ? 'true' : 'false' %>" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button></td>
+                  <td class="template-message"><%= template.content %></td>
+                  <td>
+                    <button class="edit-action icon-only" type="button" aria-label="Edit template" data-modal-open="edit-record-modal"><i data-lucide="square-pen"></i></button>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span><%= pageCount %></span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

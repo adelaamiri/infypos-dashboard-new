@@ -1,0 +1,157 @@
+<div class="modal-backdrop" data-modal-backdrop hidden>
+  <section class="app-modal password-modal" data-modal="password-modal" role="dialog" aria-modal="true" aria-labelledby="password-modal-title">
+    <header class="modal-header">
+      <h2 id="password-modal-title">Change Password</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <form class="modal-form">
+      <label>
+        <span>Current Password:<b>*</b></span>
+        <div class="input-with-icon">
+          <input type="password" placeholder="Enter Current Password">
+          <button type="button" aria-label="Toggle current password"><i data-lucide="eye-off"></i></button>
+        </div>
+      </label>
+      <label>
+        <span>New Password:<b>*</b></span>
+        <div class="input-with-icon">
+          <input type="password" placeholder="Enter New Password">
+          <button type="button" aria-label="Toggle new password"><i data-lucide="eye-off"></i></button>
+        </div>
+      </label>
+      <label>
+        <span>Confirm Password:<b>*</b></span>
+        <div class="input-with-icon">
+          <input type="password" placeholder="Enter Confirm Password">
+          <button type="button" aria-label="Toggle confirm password"><i data-lucide="eye-off"></i></button>
+        </div>
+      </label>
+      <div class="modal-actions">
+        <button class="button-primary" type="submit">Save</button>
+        <button class="button-muted" type="button" data-modal-close>Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="app-modal language-modal" data-modal="language-modal" role="dialog" aria-modal="true" aria-labelledby="language-modal-title">
+    <header class="modal-header">
+      <h2 id="language-modal-title">Change Language</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <form class="modal-form">
+      <label>
+        <span>Language:<b>*</b></span>
+        <div class="select-field">
+          <select>
+            <option>English</option>
+            <option>Dari</option>
+            <option>Pashto</option>
+          </select>
+          <i data-lucide="chevron-down"></i>
+        </div>
+      </label>
+      <div class="modal-actions">
+        <button class="button-primary" type="submit">Save</button>
+        <button class="button-muted" type="button" data-modal-close>Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="app-modal customer-password-modal" data-modal="customer-password-modal" role="dialog" aria-modal="true" aria-labelledby="customer-password-title">
+    <header class="modal-header compact-modal-header">
+      <h2 id="customer-password-title">Customer Password</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <form class="modal-form compact-modal-form">
+      <label>
+        <span>Email:<b>*</b></span>
+        <input type="email" value="Gmail@gmail.com">
+      </label>
+      <label>
+        <span>Password:<b>*</b></span>
+        <input type="password" placeholder="Enter Password">
+      </label>
+      <label>
+        <span>Confirm Password:<b>*</b></span>
+        <input type="password" placeholder="Enter Confirm Password">
+      </label>
+      <div class="modal-actions customer-password-actions">
+        <button class="button-primary" type="submit">Save</button>
+        <button class="button-muted" type="button" data-modal-close>Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="app-modal transaction-modal" data-modal="transaction-modal" role="dialog" aria-modal="true" aria-labelledby="transaction-modal-title">
+    <header class="modal-header transaction-header">
+      <h2 id="transaction-modal-title">Transaction Details #10 - Add Amount Request</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <div class="transaction-body">
+      <div class="transaction-column">
+        <h3>Transaction Details</h3>
+        <p><strong>Amount:</strong> <span class="text-primary">$ 500,0</span></p>
+        <p><strong>Transaction Type:</strong> <span class="status-pill status-blue">Credit</span></p>
+        <p><strong>Status:</strong> <span class="status-pill status-pending">Rejected</span></p>
+        <p><strong>Date:</strong> 2082-12-19</p>
+      </div>
+      <div class="transaction-column">
+        <h3>Customer Details</h3>
+        <p><strong>Name:</strong> Mohit</p>
+        <p><strong>Email:</strong> mohitinfyom@gmail.com</p>
+        <p><strong>Phone:</strong> 9876543210</p>
+        <p><strong>City:</strong> Surat</p>
+      </div>
+    </div>
+    <div class="transaction-footer">
+      <button class="button-muted" type="button" data-modal-close>Close</button>
+    </div>
+  </section>
+
+  <section class="app-modal edit-record-modal" data-modal="edit-record-modal" role="dialog" aria-modal="true" aria-labelledby="edit-record-title">
+    <header class="modal-header compact-modal-header">
+      <h2 id="edit-record-title">Edit Details</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </header>
+    <form class="modal-form compact-modal-form">
+      <label>
+        <span>Name:<b>*</b></span>
+        <input type="text" value="General Store">
+      </label>
+      <label>
+        <span>Email:</span>
+        <input type="email" value="admin@infy-pos.com">
+      </label>
+      <label>
+        <span>Phone Number:</span>
+        <input type="text" value="8807681322">
+      </label>
+      <div class="modal-actions customer-password-actions">
+        <button class="button-primary" type="submit">Save</button>
+        <button class="button-muted" type="button" data-modal-close>Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="app-modal delete-modal" data-modal="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+    <div class="delete-modal-body">
+      <div class="delete-icon" aria-hidden="true"><i data-lucide="trash-2"></i></div>
+      <h2 id="delete-modal-title">Delete!</h2>
+      <p>Are you sure want to delete this record ?</p>
+      <div class="delete-modal-actions">
+        <button class="delete-confirm" type="button" data-modal-close>Yes, Delete!</button>
+        <button class="delete-cancel" type="button" data-modal-close>No, Cancel</button>
+      </div>
+    </div>
+  </section>
+</div>

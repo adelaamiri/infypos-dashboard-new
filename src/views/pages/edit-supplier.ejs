@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="edit-page-head">
+          <h1>Edit Supplier</h1>
+          <a class="back-button" href="/suppliers">Back</a>
+        </div>
+        <form class="edit-form-card">
+          <div class="profile-form-grid">
+            <label>
+              <span>Name:<b>*</b></span>
+              <input type="text" value="<%= supplier.name %>">
+            </label>
+            <label>
+              <span>Email:<b>*</b></span>
+              <input type="email" value="<%= supplier.email %>">
+            </label>
+            <label>
+              <span>Phone Number:<b>*</b></span>
+              <input type="text" value="<%= supplier.phone %>">
+            </label>
+            <label>
+              <span>Country:<b>*</b></span>
+              <input type="text" value="Australia">
+            </label>
+            <label>
+              <span>City:<b>*</b></span>
+              <input type="text" value="Melbourne">
+            </label>
+            <label>
+              <span>Address:<b>*</b></span>
+              <input type="text" value="355-357 Burwood Rd Melbourne Victoria-3122.">
+            </label>
+          </div>
+          <div class="edit-form-actions">
+            <button class="button-primary" type="submit">Save</button>
+            <a class="button-muted link-button" href="/suppliers">Cancel</a>
+          </div>
+        </form>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

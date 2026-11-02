@@ -1,0 +1,64 @@
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="icon-button menu-toggle" type="button" aria-label="Open menu" data-sidebar-toggle>
+      <span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <i data-lucide="menu"></i>
+    </button>
+    <div class="dropdown-wrap quick-action-wrap">
+      <button class="section-tab dropdown-trigger" type="button" data-dropdown-trigger="quick-actions" aria-expanded="false">
+        <span class="tab-icon"><span class="plus-fallback" aria-hidden="true">+</span><i data-lucide="plus-square"></i></span>
+        <span><%= typeof activePageTitle !== 'undefined' ? activePageTitle : 'Dashboard' %></span>
+      </button>
+      <div class="dropdown-panel quick-actions-dropdown" data-dropdown-menu="quick-actions">
+        <% [
+          ['Sales', 'plus'],
+          ['Purchase', 'plus'],
+          ['Customer', 'plus'],
+          ['Supplier', 'plus'],
+          ['Product', 'plus'],
+          ['Expense', 'plus']
+        ].forEach(item => { %>
+          <a href="#" class="quick-action-item">
+            <span class="quick-action-icon"><i data-lucide="<%= item[1] %>"></i></span>
+            <span><%= item[0] %></span>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+    <% if (typeof topbarTabs !== 'undefined' && topbarTabs && topbarTabs.length) { %>
+      <nav class="topbar-tabs" aria-label="Settings sections">
+        <% topbarTabs.forEach(tab => { %>
+          <a href="<%= tab[1] %>" class="<%= tab[0] === (typeof activePageTitle !== 'undefined' ? activePageTitle : '') ? 'active' : '' %>"><%= tab[0] %></a>
+        <% }) %>
+      </nav>
+    <% } %>
+  </div>
+  <div class="topbar-actions">
+    <button class="round-button" type="button">POS</button>
+    <button class="icon-button" type="button" aria-label="Fullscreen"><i data-lucide="maximize"></i></button>
+    <div class="dropdown-wrap admin-wrap">
+      <button class="admin-trigger" type="button" data-dropdown-trigger="admin-menu" aria-expanded="false">
+        <span class="avatar-button">AP</span>
+        <span class="admin-menu">
+          <span><%= dashboard.adminName %></span>
+          <i data-lucide="chevron-down"></i>
+        </span>
+      </button>
+      <div class="dropdown-panel admin-dropdown" data-dropdown-menu="admin-menu">
+        <div class="admin-card-head">
+          <div class="admin-card-avatar">AP</div>
+          <strong><%= dashboard.adminName %></strong>
+          <span>admin@infy-pos.com</span>
+        </div>
+        <nav class="admin-card-menu" aria-label="Admin menu">
+          <a href="/profile"><i data-lucide="user"></i><span>Profile</span></a>
+          <a href="#" data-modal-open="password-modal"><i data-lucide="lock"></i><span>Change Password</span></a>
+          <a href="#" data-modal-open="language-modal"><i data-lucide="languages"></i><span>Change Language</span></a>
+          <a href="/login"><i data-lucide="log-out"></i><span>Logout</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<%- include('../partials/admin-modals') %>

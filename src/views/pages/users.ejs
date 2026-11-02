@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <button class="create-button" type="button">Create User</button>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table users-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>User</th>
+                <th>Role</th>
+                <th>Phone Number</th>
+                <th>Stores</th>
+                <th>Created On</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>
+                    <span class="user-cell">
+                      <span class="user-avatar-small"><%= user.initials %></span>
+                      <span>
+                        <a class="person-name" href="#"><%= user.name %></a>
+                        <span class="person-email"><%= user.email %></span>
+                      </span>
+                    </span>
+                  </td>
+                  <td><%= user.role %></td>
+                  <td><%= user.phone %></td>
+                  <td>
+                    <% if (user.stores === '-') { %>
+                      -
+                    <% } else { %>
+                      <span class="store-count-pill"><%= user.stores %></span>
+                    <% } %>
+                  </td>
+                  <td><span class="date-pill"><%= user.time %><br><%= user.date %></span></td>
+                  <td>
+                    <span class="table-actions">
+                      <button class="key-action" type="button" aria-label="Key" data-modal-open="customer-password-modal"><i data-lucide="key-round"></i></button>
+                      <button class="edit-action" type="button" aria-label="Edit" data-modal-open="edit-record-modal"><i data-lucide="square-pen"></i></button>
+                      <button class="delete-action" type="button" aria-label="Delete" data-modal-open="delete-modal"><i data-lucide="trash-2"></i></button>
+                    </span>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-10 of 39</span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <span></span>
+          <button class="create-button" type="button">Add Payment Method</button>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table settings-table payment-table">
+            <thead><tr><th>Name</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <% paymentMethods.forEach(method => { %>
+                <tr>
+                  <td><%= method.name %></td>
+                  <td><button class="status-switch <%= method.enabled ? 'is-on' : '' %>" type="button" data-toggle-switch aria-pressed="<%= method.enabled ? 'true' : 'false' %>" onclick="this.classList.toggle('is-on');this.setAttribute('aria-pressed', this.classList.contains('is-on'))"><span></span></button></td>
+                  <td>
+                    <span class="table-actions">
+                      <button class="edit-action" type="button" aria-label="Edit" data-modal-open="edit-record-modal"><i data-lucide="square-pen"></i></button>
+                      <% if (method.deletable) { %><button class="delete-action" type="button" aria-label="Delete" data-modal-open="delete-modal"><i data-lucide="trash-2"></i></button><% } %>
+                    </span>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

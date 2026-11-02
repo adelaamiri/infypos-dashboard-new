@@ -1,0 +1,44 @@
+const express = require('express');
+const dashboardController = require('../controllers/dashboardController');
+
+const router = express.Router();
+
+router.get('/', dashboardController.index);
+router.get('/login', dashboardController.login);
+router.get('/dashboard', dashboardController.index);
+router.get('/profile', dashboardController.profile);
+router.get('/products', dashboardController.products);
+router.get('/product-categories', dashboardController.productCategories);
+router.get('/variations', dashboardController.variations);
+router.get('/brands', dashboardController.brands);
+router.get('/units', dashboardController.units);
+router.get('/base-units', dashboardController.baseUnits);
+router.get('/print-barcode', dashboardController.printBarcode);
+router.get('/adjustments', dashboardController.adjustments);
+router.get('/quotations', dashboardController.quotations);
+router.get('/purchases', dashboardController.purchases);
+router.get('/purchase-returns', dashboardController.purchaseReturns);
+router.get('/sales', dashboardController.sales);
+router.get('/sales-returns', dashboardController.salesReturns);
+router.get('/transfers', dashboardController.transfers);
+router.get('/expenses', dashboardController.expenses);
+router.get('/expense-categories', dashboardController.expenseCategories);
+router.get('/suppliers', dashboardController.suppliers);
+router.get('/suppliers/edit', dashboardController.editSupplier);
+router.get('/customers', dashboardController.customers);
+router.get('/users', dashboardController.users);
+router.get('/wallet-requests', dashboardController.walletRequests);
+router.get('/roles', dashboardController.roles);
+router.get('/warehouse', dashboardController.warehouse);
+router.get('/reports', dashboardController.reports);
+router.get('/stores', dashboardController.stores);
+router.get('/currencies', dashboardController.currencies);
+router.get('/languages', dashboardController.languages);
+router.get('/payment-methods', dashboardController.paymentMethods);
+router.get('/field-configuration', dashboardController.fieldConfiguration);
+router.get('/email-templates', dashboardController.emailTemplates);
+router.get('/sms-templates', dashboardController.smsTemplates);
+router.get('/sms-api', dashboardController.smsApi);
+router.get('/settings', dashboardController.settings);
+
+module.exports = router;

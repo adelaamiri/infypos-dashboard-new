@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../layouts/head') %></head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content product-main">
+      <%- include('../partials/topbar') %>
+      <section class="product-content">
+        <div class="product-toolbar">
+          <label class="product-search"><i data-lucide="search"></i><input type="search" placeholder="Search"></label>
+          <button class="create-button" type="button">Create Currency</button>
+        </div>
+        <div class="product-table-card">
+          <table class="product-table operations-table settings-table">
+            <thead>
+              <tr><th><input type="checkbox"></th><th>Name</th><th>Code</th><th>Symbol</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <% currencies.forEach(currency => { %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><%= currency.name %></td>
+                  <td><span class="code-pill"><%= currency.code %></span></td>
+                  <td><span class="symbol-pill"><%= currency.symbol %></span></td>
+                  <td><%- include('../partials/table-actions', { copy: false, view: false }) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-row">
+          <div>Records per page <button class="page-size" type="button">10 <i data-lucide="chevron-down"></i></button> <span>1-10 of 15</span></div>
+          <div class="pager"><i data-lucide="chevrons-left"></i><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="chevrons-right"></i></div>
+        </div>
+        <%- include('../partials/product-page-footer') %>
+      </section>
+    </main>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

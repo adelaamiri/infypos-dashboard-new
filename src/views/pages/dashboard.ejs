@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layouts/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('../partials/sidebar') %>
+    <main class="main-content">
+      <%- include('../partials/topbar') %>
+
+      <section class="dashboard-content">
+        <div class="welcome-row">
+          <h1><span class="welcome-emoji" data-time-greeting-icon>🌞</span> <span data-time-greeting>Good Afternoon</span>, <strong><%= dashboard.adminName %></strong></h1>
+          <div class="dropdown-wrap date-dropdown-wrap">
+            <button class="date-range dropdown-trigger" type="button" data-dropdown-trigger="date-menu" aria-expanded="false">
+              <span data-date-label><%= dashboard.rangeLabel %></span>
+              <i data-lucide="calendar-days"></i>
+            </button>
+            <div class="dropdown-panel date-menu" data-dropdown-menu="date-menu">
+              <% ['Today', 'This Week', 'Last Week', 'This Month', 'Last Month', 'Custom Range'].forEach(range => { %>
+                <button class="date-option <%= range === 'This Month' ? 'active' : '' %>" type="button" data-date-option="<%= range %>"><%= range %></button>
+              <% }) %>
+              <button class="date-reset" type="button" data-date-reset>Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <section class="stats-grid" aria-label="Dashboard summary">
+          <% dashboard.statCards.forEach(card => { %>
+            <% if (card.href) { %>
+              <a class="stat-card <%= card.gradient %>" href="<%= card.href %>">
+                <div>
+                  <h2><%= card.label %></h2>
+                  <p><%= card.value %></p>
+                </div>
+                <i data-lucide="<%= card.icon %>"></i>
+              </a>
+            <% } else { %>
+              <article class="stat-card <%= card.gradient %>">
+                <div>
+                  <h2><%= card.label %></h2>
+                  <p><%= card.value %></p>
+                </div>
+                <i data-lucide="<%= card.icon %>"></i>
+              </article>
+            <% } %>
+          <% }) %>
+        </section>
+
+        <section class="charts-grid">
+          <article class="panel sales-panel">
+            <div class="panel-header">
+              <h2>This Week Sales & Purchases</h2>
+              <button class="icon-button subtle" type="button" aria-label="Chart options"><i data-lucide="menu"></i></button>
+            </div>
+            <div class="chart-frame chart-frame-large">
+              <canvas id="weeklyChart"></canvas>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header centered">
+              <h2>Top Selling Products (2026)</h2>
+            </div>
+            <div class="chart-frame pie-frame pie-frame-with-legend">
+              <canvas id="productsPie"></canvas>
+              <ul class="pie-legend" aria-label="Top selling products legend">
+                <% (dashboard.topProductsYear || []).forEach(product => { %>
+                  <li><span style="background:<%= product.color %>"></span><%= product.name %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </article>
+
+          <article class="panel table-panel">
+            <div class="panel-header">
+              <h2>Top Selling Products (May)</h2>
+            </div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Grand Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% dashboard.topProductsMonth.forEach(product => { %>
+                    <tr>
+                      <td><span class="color-dot" style="background:<%= product.color %>"></span><%= product.name %></td>
+                      <td><%= product.quantity %></td>
+                      <td>$ <%= product.grandTotal.toLocaleString() %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header centered">
+              <h2>Top 5 Customers(May)</h2>
+            </div>
+            <div class="chart-frame pie-frame pie-frame-with-legend">
+              <canvas id="customersPie"></canvas>
+              <ul class="pie-legend" aria-label="Top customers legend">
+                <% (dashboard.topCustomersMonth || []).forEach(customer => { %>
+                  <li><span style="background:<%= customer.color %>"></span><%= customer.name %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </article>
+
+          <article class="panel recent-sales-panel">
+            <div class="panel-header">
+              <h2>Recent Sales</h2>
+            </div>
+            <div class="responsive-table recent-sales-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Grand Total</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                    <th>Payment Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% (dashboard.recentSales || []).forEach(sale => { %>
+                    <tr>
+                      <td><%= sale.reference %></td>
+                      <td><%= sale.customer %></td>
+                      <td><span class="badge badge-success"><%= sale.status %></span></td>
+                      <td><%= sale.grandTotal %></td>
+                      <td><%= sale.paid %></td>
+                      <td><%= sale.due %></td>
+                      <td>
+                        <span class="badge <%= sale.paymentStatus === 'Paid' ? 'badge-success' : 'badge-warning' %>">
+                          <%= sale.paymentStatus %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel stock-alert-panel">
+            <div class="panel-header">
+              <h2>Stock Alert</h2>
+            </div>
+            <div class="responsive-table stock-alert-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Product</th>
+                    <th>Warehouse</th>
+                    <th>Quantity</th>
+                    <th>Alert Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% (dashboard.stockAlerts || []).forEach(item => { %>
+                    <tr>
+                      <td><%= item.code %></td>
+                      <td><%= item.product %></td>
+                      <td><%= item.warehouse %></td>
+                      <td>
+                        <span class="stock-pill stock-pill-blue"><%= item.quantity %></span>
+                        <span class="stock-pill stock-pill-green"><%= item.quantityUnit %></span>
+                      </td>
+                      <td>
+                        <span class="stock-pill stock-pill-red"><%= item.alertQuantity %></span>
+                        <span class="stock-pill stock-pill-green"><%= item.alertUnit %></span>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script id="dashboard-data" type="application/json"><%- chartData %></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
